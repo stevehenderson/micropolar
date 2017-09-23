@@ -4,6 +4,9 @@ var micropolar = {
 
 var µ = micropolar;
 
+//Default arc span of the plot, in degrees.  360 for full polar plot
+var span = 360;
+
 µ.Axis = function module() {
     var config = {
         data: [],
@@ -16,6 +19,13 @@ var µ = micropolar;
         container = _container || container;
         var data = config.data;
         var axisConfig = config.layout;
+
+       
+        if(typeof axisConfig.span != "undefined") {
+            span = axisConfig.span
+        } 
+          
+
         if (typeof container === "string" || container.nodeName) {
             container = d3.select(container);
         }
@@ -143,7 +153,8 @@ var µ = micropolar;
             angularAxisRange = angularAxisRange.map(function(d, i) {
                 return parseFloat(d.toPrecision(12));
             });
-            angularScale = d3.scale.linear().domain(angularDomainWithPadding.slice(0, 2)).range(axisConfig.direction === "clockwise" ? [ 0, 360 ] : [ 360, 0 ]);
+            //spanset
+            angularScale = d3.scale.linear().domain(angularDomainWithPadding.slice(0, 2)).range(axisConfig.direction === "clockwise" ? [ 0, span ] : [ span, 0 ]);
             liveConfig.layout.angularAxis.domain = angularScale.domain();
             liveConfig.layout.angularAxis.endPadding = needsEndSpacing ? angularDomainStep : 0;
             svg = d3.select(this).select("svg.chart-root");
