@@ -1,0 +1,222 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  background-color: #203339;
+  color: #3ae1d0;
+  font-family: 'Lato', sans-serif;
+}
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+  border: 0;
+  background-color: rgba(22, 37, 40, .6);
+  border-bottom: 4px solid #345256;
+}
+.nav.navbar-nav.navbar-right li a {
+    color: #487480;
+}
+
+li {
+  padding-top: 10px;
+  padding-right: 10px;
+  margin-bottom: -20px;
+  color: #487480;
+  font-size: 10px;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #61b7ff;
+}
+
+/*
+*Imported Animated Search 
+*/
+
+#wrap {
+  margin: 2px 10px;
+  display: inline-block;
+  position: relative;
+  height: 5px;
+  float: right;
+  padding: 0;
+  position: relative;
+}
+
+input[type="text"] {
+  height: 40px;
+  font-size: 20px;
+  display: inline-block;
+  font-family: "Lato";
+  font-weight: 100;
+  border: none;
+  outline: none;
+  color: #487480;
+  padding: 3px;
+  padding-right: 35px;
+  width: 0px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  z-index: 3;
+  transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+  cursor: pointer;
+
+}
+
+input[type="text"]:focus:hover {
+  border-bottom: 1px solid #487480;
+}
+
+input[type="text"]:focus {
+  width: 400px;
+  z-index: 1;
+  border-bottom: 1px solid #487480;
+  cursor: text;
+}
+input[type="submit"] {
+  height: 37px;
+  width: 33px;
+  display: inline-block;
+  color:red;
+  float: right;
+  background: none;
+  text-indent: -10000px;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  cursor: pointer;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity .4s ease;
+}
+
+input[type="submit"]:hover {
+  opacity: 0.8;
+}
+/* End imported animated search
+
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+  }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+
+.world-map {
+    display: block;
+    margin: auto;
+    width: 100%;
+}
+
+.bottomrowoverlay {  
+  background-color: rgba(50, 81, 89, .6);
+  padding-top: 40px;
+  margin-top:-200px;  
+  z-index:1;  
+}
+
+
+.bottomrowheader {  
+  background-color: #162528;
+  padding-top: 10px;
+  margin-top:-200px;  
+  z-index:1;  
+}
+
+/*
+ * Main content
+ */
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+
+ .polar {
+        float: left;
+        border: #eee 1px solid;
+        margin: 5px;
+      }

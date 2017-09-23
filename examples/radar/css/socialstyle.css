@@ -1,0 +1,53 @@
+body {
+  font-family : Myriad Pro;
+  font-size : 5px;
+  color : #3BE2D0;
+  color : rgb(59, 226, 208);
+}
+
+.image
+{
+  background-image : url(image.png);
+  /*To create image referenced in CSS, use 'Export Selected CSS' command.*/
+  background-repeat : no-repeat;
+  width : 14px;
+  height : 8px;
+}
+.image1
+{
+  background-image : url(image1.png);
+  /*To create image referenced in CSS, use 'Export Selected CSS' command.*/
+  background-repeat : no-repeat;
+  width : 9px;
+  height : 9px;
+}
+
+.line
+{
+  border-style : Solid;
+  border-color : #3BE2D0;
+  border-color : rgba(59, 226, 208, 1);
+  border-width : 0px;
+  width : 58px;
+  height : 0px;
+}
+
+.box
+{
+  background : #243330;
+  background : rgba(36, 51, 48, 1);
+  border-style : Solid;
+  border-color : #3BE2D0;
+  border-color : rgba(59, 226, 208, 1);
+  border-width : 0px;
+  width : 67px;
+  height : 68px;
+}
+
+.NormalCharacterStyle
+{
+  font-family : Myriad Pro;
+  font-size : 5px;
+  color : #3BE2D0;
+  color : rgb(59, 226, 208);
+}

@@ -1,0 +1,58 @@
+body {
+  background-color: tomato;
+}
+
+p {
+  margin-top: 1px;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #3be2d0;
+    margin: 1em 0;
+    padding: 0; 
+}
+
+.wrapper {
+  display: grid;
+  width: 300px;
+  grid-template-columns: 100px 100px 100px;
+  grid-gap: 10px;
+  background-color: #325159;
+  color: #444;
+  justify-content: center;
+  padding: 20px;
+}
+
+.left_chart {
+  float: left;
+}
+
+.box {
+  background : #243330;
+  background : rgba(36, 51, 48, 1);
+  border-style : Solid;
+  border-color : #3BE2D0;
+  border-color : rgba(59, 226, 208, 1);
+  border-width : 1px;
+  border-radius: 3px;
+  padding: 10px;
+  color: #3BE2D0;
+  font-size: 6px;
+  width : 80px;
+  height : 80px;
+  overflow: hidden;
+}
+
+.retweet {
+  float: right;
+  margin-top: 5px;
+  padding: 2px;
+}
+
+.twitter {
+  margin-top: 3px;
+  float: right;
+}

@@ -1,0 +1,181 @@
+
+
+/* sh-list group */
+/* sh-list */
+    .sh-list, .block .content.sh-list{
+        padding: 0px; 
+        sh-list-style: none;
+    }
+        .sh-list,.sh-list .sh-list-item,.sh-list .sh-list-title{
+            display: block; 
+            width: 100%; 
+            float: left;
+        }
+        .sh-list .sh-list-title{
+            color: #3ae1d0; 
+            font-weight: bold; 
+            font-size: 12px; 
+            text-transform: uppercase; 
+            text-decoration: none; 
+        }
+        .sh-list .sh-list-item{
+            margin: 10px;
+            background: #E7EBEC; 
+            color: #333; 
+            position: relative; 
+            overflow: hidden;
+            
+        }
+            .sh-list .sh-list-item:nth-child(2n+1){
+                background: #DEE4E5;
+            }
+            .sh-list .sh-list-item:hover{
+                background: #FFF;
+            }            
+        
+        .sh-list-default .sh-list-item{
+            background: rgba(0,0,0,0.2); 
+            color: #3ae1d0; 
+            margin-bottom: 3px; 
+            overflow: auto;
+        }    
+            .sh-list-default .sh-list-item:nth-child(2n+1){
+                background: rgba(0,0,0,0.3);
+            }
+            .sh-list-default .sh-list-item:hover{
+                background: rgba(0,0,0,0.1);
+            }
+            .sh-list-default .sh-list-item .sh-list-text{
+                float: left;
+            }
+            .sh-list-default .sh-list-item .sh-list-title{
+                padding-bottom: 0px;
+            }
+                .sh-list-default .sh-list-item .sh-list-text img{
+                    margin: 0px 5px 0px 0px;
+                }                
+            
+            .sh-list .sh-list-item .sh-list-datetime,
+            .sh-list .sh-list-item .sh-list-info{
+                float: left; padding: 8px 10px 8px 10px;
+            }
+                .sh-list .sh-list-item .sh-list-datetime{
+                    width: 65px;
+                }
+                .sh-list .sh-list-item .sh-list-datetime .date{
+                    font-size: 12px; 
+                    color: #BA3450; 
+                    text-align: center; 
+                    font-weight: bold;
+                }
+                .sh-list .sh-list-item .sh-list-datetime .time{
+                    font-size: 19px; 
+                    color: #8F95A1; 
+                    text-align: center; 
+                    line-height: 14px;
+                }
+                
+            .sh-list .sh-list-item .sh-list-text{
+                padding: 8px 15px 8px 10px;
+            }
+                .sh-list .sh-list-item .sh-list-text .sh-list-text-name{
+                    font-size: 14px; 
+                    color: #333;
+                }
+                .sh-list .sh-list-item .sh-list-text p{
+                    margin: 5px 0px; 
+                    font-size: 11px; 
+                    color: #888D9A; 
+                    line-height: 16px;
+                }
+                .sh-list .sh-list-item .sh-list-text .sh-list-text-info{
+                    font-size: 11px; 
+                    color: #3ae1d0; 
+                    margin-top: 3px; 
+                    line-height: 14px;
+                }
+                
+                
+            .sh-list .sh-list-item .sh-list-controls{
+                position: absolute; 
+                width: 50%; 
+                height: 80px; 
+                right: -50%; 
+                top: 0px; 
+                padding: 5px 10px; 
+                background: rgba(225,90,0,0.9); 
+                transition: 200ms; 
+                line-height: 64px;
+            }
+                .sh-list .sh-list-item:hover .sh-list-controls{
+                    transition: 200ms; right: 0;
+                }
+                .sh-list .sh-list-item .sh-list-controls a{
+                    margin-right: 10px;
+                }                        
+                
+                .sh-list.sh-list-contacts .sh-list-controls{
+                    height: 56px; 
+                    line-height: 48px;
+                }
+                
+            .sh-list-default .sh-list-item .sh-list-text p{
+                font-size: 12px; 
+                color: #3ae1d0; 
+                margin-bottom: 3px; 
+                margin-top: 0px; 
+                padding-top: 0px;
+            }        
+                
+        .sh-list.sh-list-contacts{
+            background: transparent;
+        }
+            .sh-list.sh-list-contacts 
+            .sh-list-item{
+                padding: 5px;
+                background: #243330;
+                border: 2px solid #3be2d0; 
+                margin-bottom: 1px; color: #3ae1d0; 
+                margin-bottom: -1px;
+            }
+                .sh-list.sh-list-contacts .sh-list-item:hover,
+                .sh-list.sh-list-contacts .sh-list-item.active{
+                    background: rgba(0,0,0,0.1);
+                }
+                .sh-list.sh-list-contacts .sh-list-item .sh-list-text 
+                .sh-list-text-name{
+                    color: tomato;
+                }
+                .sh-list.sh-list-contacts .sh-list-item .sh-list-text p,
+                .sh-list.sh-list-contacts .sh-list-item .sh-list-text .sh-list-text-info{
+                    color: #3ae1d0;
+                }
+                .sh-list.sh-list-contacts .sh-list-item:last-child{
+                    margin-bottom: 0px;
+                }
+                
+         .sh-list-status{
+            width: 10px; 
+            height: 10px; 
+            position: absolute; 
+            right: 10px; 
+            top: 50%; 
+            margin-top: -5px;
+            -moz-border-radius: 50%; 
+            -webkit-border-radius: 50%; 
+            border-radius: 50%;
+            }       
+            .sh-list-status-online{
+                background: #86D435;
+            }
+            .sh-list-status-offline{
+                background: #EF372E;
+            }
+            .sh-list-status-away{
+                background: #FF9806;
+            }
+            
+            .sh-list .sh-list-item .progress{
+                margin: 3px 0px 2px;
+            }
+/* eof sh-list */
