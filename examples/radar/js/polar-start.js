@@ -19,8 +19,8 @@ var configs = [
         orientation: 375, 
         span: 180,
         reverseOrder: true,
-        barmode: 'stack', backgroundColor: '#3ae1d0', showLegend: false },
-        angularAxis: {domain: [0, 360]},     
+        radialAxis: { visible: false},
+        barmode: 'stack', backgroundColor: '#3ae1d0', showLegend: false }
     }            
 ];
 

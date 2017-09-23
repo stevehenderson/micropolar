@@ -135,7 +135,7 @@ var span = 360;
             if (needsEndSpacing && isOrdinal) {
                 angularDomainWithPadding[1] += angularDomainStep;
             }
-            var tickCount = axisConfig.angularAxis.ticksCount || 4;
+            var tickCount = axisConfig.angularAxis.ticksCount || 7;
             if (tickCount > 8) {
                 tickCount = tickCount / (tickCount / 8) + tickCount % 8;
             }
@@ -161,8 +161,8 @@ var span = 360;
             if (typeof svg === "undefined" || svg.empty()) {
                 var skeleton = '<svg xmlns="http://www.w3.org/2000/svg" class="chart-root">' 
                         + '<g class="outer-group">' + '<g class="chart-group">' 
-                        + '<path class="background-circle"></path>' + '<g class="geometry-group"></g>' + '<g class="radial axis-group">' 
-                        + '<circle class="outside-circle"></circle>' + "</g>" + '<g class="angular axis-group"></g>' 
+                        + '<path class="background-circle"></path>' + '<g class="radial axis-group"></g>' +'<g class="geometry-group"></g>' + 
+                        + '<circle class="outside-circle"></circle>' + '<g class="angular axis-group"></g>' 
                         + '<g class="guides-group"><line></line><circle r="0"></circle></g>' + "</g>" + '<g class="legend-group"></g>' 
                         + '<g class="tooltips-group"></g>' + '<g class="title-group"><text></text></g>' 
                         + "</g>" + "</svg>";
@@ -251,38 +251,71 @@ var span = 360;
                     y: chartCenter[1] - radius - 20
                 });
             }
+
             var radialAxis = svg.select(".radial.axis-group");
-            if (axisConfig.radialAxis.gridLinesVisible) {
-                var gridCircles = radialAxis.selectAll("circle.grid-circle").data(radialScale.ticks(5));
-                gridCircles.enter().append("circle").attr({
-                    "class": "grid-circle"
-                }).style(lineStyle);
-                gridCircles.attr("r", radialScale);
-                gridCircles.exit().remove();
-            }
+           
             radialAxis.select("circle.outside-circle").attr({
                 r: radius
             }).style(lineStyle);
 
-            //Plot concentric background circles
-            var pi = Math.PI;
+
+
+            //Concentric circles           
+            if (axisConfig.radialAxis.gridLinesVisible) {
+                var gridCircles = radialAxis.selectAll("circle.grid-circle").data(radialScale.ticks(5));
+               
+                 //Plot concentric background circles
+                var pi = Math.PI;
+
+                var arc = d3.svg.arc()
+                .innerRadius(0)
+                .outerRadius(radialScale)
+                .startAngle(90 * (pi/180)) //converting from degs to radians
+                .endAngle(270 * (pi/180)) //just radians
                 
+
+                gridCircles.enter().append("path");
+                gridCircles.attr("d", arc);
+                gridCircles.attr("fill", axisConfig.backgroundColor);
+                gridCircles.style("opacity", .2);
+                gridCircles.exit().remove();
+
+            }
+            
+
+
+            //Plot background arc            
+            var pi = Math.PI;             
+            
             var arc = d3.svg.arc()
-                .innerRadius(50)
-                .outerRadius(70)
+                .innerRadius(0)
+                .outerRadius(radius)
                 .startAngle(90 * (pi/180)) //converting from degs to radians
                 .endAngle(270 * (pi/180)) //just radians
               
             var backgroundCircle = svg.select("path.background-circle");
             backgroundCircle                            
                 .attr("d", arc)
+                .style("opacity", .2)
                 .attr("fill", axisConfig.backgroundColor);
 
+
+            //Original -- plot background circle
+            /*
+             var backgroundCircle = svg.select("circle.background-circle").attr({
+                 r: radius
+             }).style({
+                 fill: axisConfig.backgroundColor,
+                 stroke: axisConfig.stroke
+             });
+             */
 
             function currentAngle(d, i) {
                 //spanset
                 return angularScale(d) % span + axisConfig.orientation;
             }
+
+            
             if (axisConfig.radialAxis.visible) {
                 var axis = d3.svg.axis().scale(radialScale).ticks(5).tickSize(5);
                 radialAxis.call(axis).attr({
@@ -310,6 +343,7 @@ var span = 360;
                     stroke: "black"
                 });
             }
+
             var angularAxis = svg.select(".angular.axis-group").selectAll("g.angular-tick").data(angularAxisRange);
             var angularAxisEnter = angularAxis.enter().append("g").classed("angular-tick", true);
             angularAxis.attr({
@@ -640,7 +674,7 @@ var span = 360;
             labelOffset: 10,
             radialAxis: {
                 domain: null,
-                orientation: -45,
+                orientation: 0,
                 ticksSuffix: "",
                 visible: true,
                 gridLinesVisible: true,
