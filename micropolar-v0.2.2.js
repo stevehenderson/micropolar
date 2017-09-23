@@ -159,7 +159,14 @@ var span = 360;
             liveConfig.layout.angularAxis.endPadding = needsEndSpacing ? angularDomainStep : 0;
             svg = d3.select(this).select("svg.chart-root");
             if (typeof svg === "undefined" || svg.empty()) {
-                var skeleton = '<svg xmlns="http://www.w3.org/2000/svg" class="chart-root">' + '<g class="outer-group">' + '<g class="chart-group">' + '<circle class="background-circle"></circle>' + '<g class="geometry-group"></g>' + '<g class="radial axis-group">' + '<circle class="outside-circle"></circle>' + "</g>" + '<g class="angular axis-group"></g>' + '<g class="guides-group"><line></line><circle r="0"></circle></g>' + "</g>" + '<g class="legend-group"></g>' + '<g class="tooltips-group"></g>' + '<g class="title-group"><text></text></g>' + "</g>" + "</svg>";
+                var skeleton = '<svg xmlns="http://www.w3.org/2000/svg" class="chart-root">' 
+                        + '<g class="outer-group">' + '<g class="chart-group">' 
+                        + '<path class="background-circle"></path>' + '<g class="geometry-group"></g>' + '<g class="radial axis-group">' 
+                        + '<circle class="outside-circle"></circle>' + "</g>" + '<g class="angular axis-group"></g>' 
+                        + '<g class="guides-group"><line></line><circle r="0"></circle></g>' + "</g>" + '<g class="legend-group"></g>' 
+                        + '<g class="tooltips-group"></g>' + '<g class="title-group"><text></text></g>' 
+                        + "</g>" + "</svg>";
+
                 var doc = new DOMParser().parseFromString(skeleton, "application/xml");
                 var newSvg = this.appendChild(this.ownerDocument.importNode(doc.documentElement, true));
                 svg = d3.select(newSvg);
@@ -256,14 +263,25 @@ var span = 360;
             radialAxis.select("circle.outside-circle").attr({
                 r: radius
             }).style(lineStyle);
-            var backgroundCircle = svg.select("circle.background-circle").attr({
-                r: radius
-            }).style({
-                fill: axisConfig.backgroundColor,
-                stroke: axisConfig.stroke
-            });
+
+            //Plot concentric background circles
+            var pi = Math.PI;
+                
+            var arc = d3.svg.arc()
+                .innerRadius(50)
+                .outerRadius(70)
+                .startAngle(90 * (pi/180)) //converting from degs to radians
+                .endAngle(270 * (pi/180)) //just radians
+              
+            var backgroundCircle = svg.select("path.background-circle");
+            backgroundCircle                            
+                .attr("d", arc)
+                .attr("fill", axisConfig.backgroundColor);
+
+
             function currentAngle(d, i) {
-                return angularScale(d) % 360 + axisConfig.orientation;
+                //spanset
+                return angularScale(d) % span + axisConfig.orientation;
             }
             if (axisConfig.radialAxis.visible) {
                 var axis = d3.svg.axis().scale(radialScale).ticks(5).tickSize(5);
@@ -443,7 +461,8 @@ var span = 360;
                     }).style({
                         opacity: .5
                     });
-                    var angleWithOriginOffset = (mouseAngle + 180 + 360 - axisConfig.orientation) % 360;
+                    //spanset
+                    var angleWithOriginOffset = (mouseAngle + 180 + span - axisConfig.orientation) % span;
                     angularValue = angularScale.invert(angleWithOriginOffset);
                     var pos = µ.util.convertToCartesian(radius + 12, mouseAngle + 180);
                     angularTooltip.text(µ.util.round(angularValue)).move([ pos[0] + chartCenter[0], pos[1] + chartCenter[1] ]);
@@ -689,7 +708,8 @@ var span = 360;
 
 µ.util.dataFromEquation2 = function(_equation, _step) {
     var step = _step || 6;
-    var data = d3.range(0, 360 + step, step).map(function(deg, index) {
+    //spanset
+    var data = d3.range(0, span + step, step).map(function(deg, index) {
         var theta = deg * Math.PI / 180;
         var radius = _equation(theta);
         return [ deg, radius ];
@@ -700,7 +720,8 @@ var span = 360;
 µ.util.dataFromEquation = function(_equation, _step, _name) {
     var step = _step || 6;
     var t = [], r = [];
-    d3.range(0, 360 + step, step).forEach(function(deg, index) {
+    //spanset
+    d3.range(0, span + step, step).forEach(function(deg, index) {
         var theta = deg * Math.PI / 180;
         var radius = _equation(theta);
         t.push(deg);
