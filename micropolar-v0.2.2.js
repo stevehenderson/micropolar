@@ -91,6 +91,7 @@ var span = 360;
             if (isStacked) {
                 var highestStackedValue = d3.max(µ.util.sumArrays(µ.util.arrayLast(data).r[0], µ.util.arrayLast(dataYStack)));
                 extent = [ 0, highestStackedValue ];
+                extent = [0,100];
             } else {
                 extent = d3.extent(µ.util.flattenArray(data.map(function(d, i) {
                     return d.r;
@@ -254,10 +255,7 @@ var span = 360;
 
             var radialAxis = svg.select(".radial.axis-group");
            
-            radialAxis.select("circle.outside-circle").attr({
-                r: radius
-            }).style(lineStyle);
-
+            
 
 
             //Concentric circles           
@@ -277,14 +275,14 @@ var span = 360;
                 gridCircles.enter().append("path");
                 gridCircles.attr("d", arc);
                 gridCircles.attr("fill", axisConfig.backgroundColor);
-                gridCircles.style("opacity", .2);
+                gridCircles.style("opacity", .075);
                 gridCircles.exit().remove();
 
             }
             
 
 
-            //Plot background arc            
+            //Plot outside arc            
             var pi = Math.PI;             
             
             var arc = d3.svg.arc()
@@ -296,19 +294,15 @@ var span = 360;
             var backgroundCircle = svg.select("path.background-circle");
             backgroundCircle                            
                 .attr("d", arc)
-                .style("opacity", .2)
+                .style("opacity", .075)
                 .attr("fill", axisConfig.backgroundColor);
+                radialAxis.select("circle.outside-circle").attr({
+                r: radius
+            }).style(lineStyle);
 
 
-            //Original -- plot background circle
-            /*
-             var backgroundCircle = svg.select("circle.background-circle").attr({
-                 r: radius
-             }).style({
-                 fill: axisConfig.backgroundColor,
-                 stroke: axisConfig.stroke
-             });
-             */
+
+             
 
             function currentAngle(d, i) {
                 //spanset
