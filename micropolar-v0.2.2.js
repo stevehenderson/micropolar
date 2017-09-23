@@ -169,7 +169,8 @@ var µ = micropolar;
             };
             var fontStyle = {
                 "font-size": axisConfig.font.size,
-                "font-family": axisConfig.font.family
+                "font-family": axisConfig.font.family,
+                fill: axisConfig.font.color
                 
             };
             var legendContainer, legendBBox;
