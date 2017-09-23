@@ -13,7 +13,7 @@ var configs = [
             //{t: ['BBC', 'MSNBC', 'CBS', 'ABC', 'CNN', 'FOX'], r: [15, 23, 45, 65, 75, 85], name: 'Layer6', geometry: 'AreaChart', groupId: 0}
           ],
       
-      layout: { title: '', width: 300, height: 300, margin: { left: 30, right: 30, top: 00, bottom: 00, pad: 0 }, 
+      layout: { title: '', width: 300, height: 300, margin: { left: 30, right: 30, top: -200, bottom: 00, pad: 0 }, 
         font: { family: 'Arial, sans-serif', size: 10, color: '#3ae1d0' },
         direction: 'clockwise', 
         orientation: 375, 
