@@ -4,7 +4,7 @@ var configs = [
     //r:  Length of BLUE series
     {
       data: [            
-            {t: ['BBC', 'MSNBC', 'CBS', 'ABC', 'CNN', 'FOX'], r: [15, 0, 0, 0, 0, 0], color: '#6a447f', name: 'Layer1', geometry: 'AreaChart', groupId: 0},
+            {t: ['BBC', 'MSNBC', 'CBS', 'ABC', 'CNN', 'FOX'], r: [15, 0, 0, 0, 0, 0], color: '#6a447f', strokeSize: 0, name: 'Layer1', geometry: 'AreaChart', groupId: 0},
             {t: ['BBC', 'MSNBC', 'CBS', 'ABC', 'CNN', 'FOX'], r: [0, 23, 0, 0, 0, 0], color: '#dfd075', name: 'Layer2', geometry: 'AreaChart', groupId: 0},
             {t: ['BBC', 'MSNBC', 'CBS', 'ABC', 'CNN', 'FOX'], r: [0, 0, 45, 0, 0, 0], color: '#529560', name: 'Layer3', geometry: 'AreaChart', groupId: 0},
             {t: ['BBC', 'MSNBC', 'CBS', 'ABC', 'CNN', 'FOX'], r: [0, 0, 0, 65, 0, 0], color: '#d59241', name: 'Layer4', geometry: 'AreaChart', groupId: 0},
