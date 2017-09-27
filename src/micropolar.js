@@ -7,6 +7,8 @@ var µ = micropolar;
 //Default arc span of the plot, in degrees.  360 for full polar plot
 var span = 360;
 
+
+
 µ.Axis = function module() {
     var config = {
         data: [],
@@ -15,6 +17,12 @@ var span = 360;
     var svg, container, dispatch = d3.dispatch("hover"), radialScale, angularScale;
     var angularTooltip, radialTooltip, geometryTooltip;
     var exports = {};
+    
+	function removePolar() {
+		var svg = d3.select("svg.chart-root");	    
+		svg.remove();
+	}
+
     function render(_container) {
         container = _container || container;
         var data = config.data;
@@ -407,6 +415,8 @@ var span = 360;
                     return "geometry geometry" + i;
                 }
             });
+
+            //Prepare configuration for arcs
             geometryContainer.exit().remove();
             if (data[0] || hasGeometry) {
                 var geometryConfigs = [];
@@ -421,14 +431,17 @@ var span = 360;
                     geometryConfig.orientation = axisConfig.orientation;
                     geometryConfig.direction = axisConfig.direction;
                     geometryConfig.index = i;
-                    geometryConfigs.push({
+                    geometryConfigs.push({                        
                         data: d,
                         geometryConfig: geometryConfig
                     });
                 });
+
+                //We now have a bunch of geometry configs
                 var geometryConfigsGrouped = d3.nest().key(function(d, i) {
                     return typeof d.data.groupId !== "undefined" || "unstacked";
                 }).entries(geometryConfigs);
+
                 var geometryConfigsGrouped2 = [];
                 geometryConfigsGrouped.forEach(function(d, i) {
                     if (d.key === "unstacked") {
@@ -439,6 +452,8 @@ var span = 360;
                         geometryConfigsGrouped2.push(d.values);
                     }
                 });
+
+                //Plot the arc configurations
                 geometryConfigsGrouped2.forEach(function(d, i) {
                     var geometry;
                     if (Array.isArray(d)) {
@@ -586,8 +601,15 @@ var span = 360;
                 }
             });
         });
+
+
+		
+
         return exports;
     }
+     exports.removePolar = function() {
+        removePolar();        
+    };
     exports.render = function(_container) {
         render(_container);
         return this;
@@ -1027,7 +1049,8 @@ var span = 360;
             });
             generator.arc = function(d, i, pI) {
                 d3.select(this).attr({
-                    "class": "mark arc",
+                    "class": "mark arc", 
+                    id: "arc" +_config[pI].data.groupId,
                     d: arc,
                     transform: function(d, i) {
                         return "rotate(" + (geometryConfig.orientation + angularScale(d[0]) + 90) + ")";
