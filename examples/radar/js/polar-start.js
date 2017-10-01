@@ -61,7 +61,7 @@ var configs1 = [
 configs0.forEach(function(_config){
     var config = {layout: {width: 300, height: 300}};
     µ.util.deepExtend(config, _config);    
-    ms =micropolar.Axis().config(config).render(d3.select('#polarcontainer').append('div'));  
+    ms =micropolararc.Axis().config(config).render(d3.select('#polarcontainer').append('div'));  
     
 
 });
@@ -83,7 +83,7 @@ setInterval(function () {
         activeconfigs.forEach(function(_config){
         var config = {layout: {width: 300, height: 300}};
         µ.util.deepExtend(config, _config);        
-        var ms =micropolar.Axis().config(config).render(d3.select('#polarcontainer').append('div'));  
+        var ms =micropolararc.Axis().config(config).render(d3.select('#polarcontainer').append('div'));  
     
         });
     }, 1000);
