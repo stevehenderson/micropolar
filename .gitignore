@@ -1,4 +1,5 @@
 offline/*
 */.idea/*
 .idea/*
+lib/
 codeStyleSettings.xml
