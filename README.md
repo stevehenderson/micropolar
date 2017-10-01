@@ -2,7 +2,7 @@
 
 An extension of the tiny polar charts library made with D3.js for [Plotly](https://plot.ly/). 
 
-(Original project by biovisualize, [here](http://micropolar.org/) ).
+Forked from original project by biovisualize, [here](http://micropolar.org/).
 
 This code adds a span parameter that allows you to control the arc length of the radials.
 
@@ -43,8 +43,8 @@ polar-start.js
             var config = {layout: {width: 300, height: 300}};
             µ.util.deepExtend(config, _config);
             console.log(JSON.stringify(µ.adapter.plotly().convert(config, true)));
-            var ms =micropolar.Axis().config(config).render(d3.select('#polarcontainer').append('div'));
-            var ms =micropolar.Axis().config(config).render(d3.select('#polarcontainer2').append('div'));
+            var ms =micropolararc.Axis().config(config).render(d3.select('#polarcontainer').append('div'));
+            var ms =micropolararc.Axis().config(config).render(d3.select('#polarcontainer2').append('div'));
 
         });
 
@@ -57,7 +57,7 @@ index.htm
                         
             <script type='text/javascript' src="http://d3js.org/d3.v3.min.js"></script>
             
-            <script type='text/javascript' src="micropolar-arc-v0.2.2.js"></script>
+            <script type='text/javascript' src="micropolararc-arc-v0.2.2.js"></script>
 
           </head>
           <body>     
